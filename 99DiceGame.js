@@ -9,6 +9,7 @@ function diceRoll(n){
 	let eightSidedDice = diceRoll(8);
 	let fourSidedDice = diceRoll(4);
 	let result = prompt("Please enter 100, 20, 13, 10, 8, or 4");
+
 	if(result == "100"){
 		diceRoll(100);
 		console.log(hundredSidedDice)
@@ -33,5 +34,3 @@ function diceRoll(n){
 		diceRoll(4);
 		console.log(fourSidedDice)
 	}
-
-
