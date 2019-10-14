@@ -1,0 +1,8 @@
+As a user, I want to reach 100 points before my random turn timer runs out.
+As a user, if I go over 100 points, my points should reset.
+As a user, I want to play the game with 4, 8, 10, 13-sided dice all with their own rules for point association.
+As a user, at the start of the game, i want to roll a 100-sided die to determine starting point value.
+As a user, I want to roll a 20 sided die to determine my turn timer.
+As a user, I want a representative front end to show me the cards that correspond to my rolls, as well as show me values to keep track of my round.
+
+
