@@ -15,22 +15,49 @@
 
 		<center>
 			<h1>Ninty Nine!!!</h1>
-			<button onclick= runGame()>Click me</button>
+			<button  onclick="runGame()">"Start Game</button>
 			<br>
 			<br>
 			<br>
 			<br>
 			<br>
 
-			<p> Blah</p>
+			<p>Current Score</p>
+			<p id="currentScore" class="groove boldText">0</p>
+			<p>Turns left</p>
+			<p id="currentTurn">0</p>
+			<p id="youDrew">You drew </p>
 
-			<button onclick= runGame()>Roll Random Card</button>
-			<button onclick= runGame()>Roll Power Card</button>
-			<button onclick= runGame()>Roll Normal Card</button>
-			<button onclick= runGame()>Roll Extra Turn</button>
-
+			<button disabled id="randomDice" onclick= randomDice()>Draw Random Card</button>
+			<button disabled id="powerDice" onclick= specialDice()>Draw Power Card</button>
+			<button disabled id="normalDice" onclick= normalDice()>Draw Normal Card</button>
+			<button disabled id="extraDice" onclick= extraTurnDice()>Extra Turn</button>
+			<br>
+			<br>
+			<button style="display: none" id="aceOne" onclick= "aceIsOne()">1</button>
+			<button style="display: none" id="aceEleven" onclick= "aceIsEleven()">11</button>
 
 		</center>
+
+			<table><p>Card Values</p>
+				<tr> <th> Card Face </th> <th> Card Value			</th>  </tr>
+				<tr> <td> 2     	</td> <td> 2					</td>  </tr>
+				<tr> <td> 3 		</td> <td> 3					</td>  </tr>
+				<tr> <td> 4 		</td> <td> Skip	Turn			</td>  </tr>
+				<tr> <td> 5 		</td> <td> 5   					</td>  </tr>
+				<tr> <td> 6 		</td> <td> 6					</td>  </tr>
+				<tr> <td> 7     	</td> <td> 7					</td>  </tr>
+				<tr> <td> 8 		</td> <td> 8					</td>  </tr>
+				<tr> <td> 9 		</td> <td> 99					</td>  </tr>
+				<tr> <td> 10 		</td> <td> -10   				</td>  </tr>
+				<tr> <td> Jack		</td> <td> 10					</td>  </tr>
+				<tr> <td> King     	</td> <td> 10					</td>  </tr>
+				<tr> <td> Queen		</td> <td> 0					</td>  </tr>
+				<tr> <td> Ace 		</td> <td> 1 or 11				</td>  </tr>
+			</table>
+
+
+		
 
 	</body>
 </html>

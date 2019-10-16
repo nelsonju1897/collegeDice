@@ -1,129 +1,113 @@
+let currentPlayerScore;
+let currentPlayerTurns;
+let ace;
+
 function diceRoll(n){
 return  Math.floor((Math.random() * n) + 1);
 }
 
 function runGame(){
-	let thirteenSidedDice;
-	let tenSidedDice;
-	let eightSidedDice;
-	let fourSidedDice;
-
 	currentPlayerScore = diceRoll(100);
-	console.log("Your starting score is: " + currentPlayerScore);
-
 	currentPlayerTurns = diceRoll(20);
-	console.log(currentPlayerTurns);	
-	
-	while(currentPlayerScore < 99 && currentPlayerTurns >= 0){
-		let result = prompt("Please enter 13, 10, 8, or 4");
-		if(result == "13"){
-			thirteenSidedDice = randomDice();
-		}
-		else if(result == "10"){
-			tenSidedDice = extraTurnDice();
-		}
-		else if(result == "8"){
-			eightSidedDice = normalDice();
-		}
-		else if(result == "4"){
-			fourSidedDice = specialDice();
-		}
-		else{
-			console.log("Not valid");
-		}
-		if(currentPlayerScore == 99){
-			winCondition();
-		}
-		if(currentPlayerTurns <= 0  || currentPlayerScore > 99){
-			loseCondition();
-		}
-	}
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+		document.getElementById("randomDice").disabled = true;
+		document.getElementById("randomDice").disabled = false;
+		document.getElementById("powerDice").disabled = true;
+		document.getElementById("powerDice").disabled = false;
+		document.getElementById("normalDice").disabled = true;
+		document.getElementById("normalDice").disabled = false;
+		document.getElementById("extraDice").disabled = true;
+		document.getElementById("extraDice").disabled = false;
+		winCondition();
+		loseCondition();
 }
 
 function randomDice(){
-	thirteenSidedDice = diceRoll(13);
-
+	let thirteenSidedDice = diceRoll(13);
 		if(thirteenSidedDice == 1){
+			document.getElementById("youDrew").innerHTML = ("You drew a 2. Add 2 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice++);
 		}
 		else if(thirteenSidedDice == 2){
+			document.getElementById("youDrew").innerHTML = ("You drew a 3. Add 3 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 3){
+			document.getElementById("youDrew").innerHTML = ("You drew a 4. Skip an additional turn.");
 			currentPlayerTurns--;
-			console.log("You rolled a 4 Skip 1 turn.");
 		}
 		else if(thirteenSidedDice == 4){
+			document.getElementById("youDrew").innerHTML = ("You drew a 5. Add 5 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 5){
+			document.getElementById("youDrew").innerHTML = ("You drew a 6. Add 6 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 6){
+			document.getElementById("youDrew").innerHTML = ("You drew a 7. Add 7 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 7){
+			document.getElementById("youDrew").innerHTML = ("You drew a 8. Add 8 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + thirteenSidedDice;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 8){
+			document.getElementById("youDrew").innerHTML = ("You drew a 9. Score goes to 99!");
 			thirteenSidedDice++;
 			currentPlayerScore = 99;
-			console.log("You rolled: " + thirteenSidedDice);
+
 		}
 		else if(thirteenSidedDice == 9){
+			document.getElementById("youDrew").innerHTML = ("You drew a 10, subtract score by 10.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore - 10;
-			console.log("You rolled: " + thirteenSidedDice);
+
 		}
 		else if(thirteenSidedDice == 10){
+			document.getElementById("youDrew").innerHTML = ("You drew a Jack. Add 10 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + 10;
-			console.log("You rolled: " + thirteenSidedDice);
+
 		}
 		else if(thirteenSidedDice == 11){
+			document.getElementById("youDrew").innerHTML = ("You drew a Queen. Add 10 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + 10;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 12){
+			document.getElementById("youDrew").innerHTML = ("You drew an King. Add 0 to your score.");
 			thirteenSidedDice++;
 			currentPlayerScore = currentPlayerScore + 0;
-			console.log("You rolled: " + thirteenSidedDice);
 		}
 		else if(thirteenSidedDice == 13){
-			let ace = prompt("Choose 1 or 11");
-			console.log("You rolled: " + thirteenSidedDice);
-				if (ace == 1){
-					currentPlayerScore = currentPlayerScore + 1;
-				} 
-				else if(ace == 11){
-					currentPlayerScore = currentPlayerScore + 11;
-				}
+			document.getElementById("youDrew").innerHTML = ("You drew an Ace. Choose 1 or 11.");
+			toggleAceOne("");
+			toggleAceEleven("");
+			currentPlayerTurns++;			
 		}
 		currentPlayerTurns--;
-		console.log("Your current score is:" + currentPlayerScore)
-		console.log(currentPlayerTurns)
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+		winCondition();
+		loseCondition();
 }
 
 function extraTurnDice(){	
-		tenSidedDice = diceRoll(10);
+		let tenSidedDice = diceRoll(10);
 		currentPlayerTurns++
 		currentPlayerScore = (currentPlayerScore - tenSidedDice);
-		console.log("You rolled: " + tenSidedDice);
-		console.log("Your current score is:" + currentPlayerScore)
-		console.log("Turns remaining: " + currentPlayerTurns)
+		winCondition();
+		loseCondition();
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
 	}
 
 function normalDice(){
@@ -131,95 +115,138 @@ function normalDice(){
 		if(eightSidedDice == 1){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + eightSidedDice;
-			console.log("You rolled: " + eightSidedDice++);
 		}
 		else if(eightSidedDice == 2){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + eightSidedDice;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 3){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 5;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 4){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 6;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 5){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 7;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 6){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 8;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 7){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 10;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		else if(eightSidedDice == 8){
 			eightSidedDice++;
 			currentPlayerScore = currentPlayerScore + 10;
-			console.log("You rolled: " + eightSidedDice);
 		}
 		currentPlayerTurns--;
-		console.log("Your current score is:" + currentPlayerScore)
-		console.log(currentPlayerTurns)
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+		winCondition();
+		loseCondition();
 }
 
 function specialDice(){
-	fourSidedDice = diceRoll(4);
+	fourSidedDice = diceRoll(5);
 	if(fourSidedDice == 1){
 		currentPlayerTurns--;
-		console.log("You rolled a 1. Skip 1 turn");
+		document.getElementById("youDrew").innerHTML = ("You drew a 4, skip an additional turn.");
 	}
 	else if(fourSidedDice == 2){
+		document.getElementById("youDrew").innerHTML = ("You drew a 9. Score goes to 99!");
 		currentPlayerScore = 99;
-		console.log("You rolled: " + fourSidedDice);
 	}
 	else if(fourSidedDice == 3){
+		document.getElementById("youDrew").innerHTML = ("You drew a 10, subtract score by 10.");
 		currentPlayerScore = currentPlayerScore - 10;
-		console.log("You rolled: " + fourSidedDice);
 	}
 	else if(fourSidedDice == 4){
-		let ace = prompt("Choose 1 or 11")
-		console.log("You rolled: " + fourSidedDice);
-		if (ace == 1){
-			currentPlayerScore = currentPlayerScore + 1;
-		} 
-		else if(ace == 11){
-			currentPlayerScore = currentPlayerScore + 11;
-		}
-		else{
-			console.log("Not valid");
-		}
+		document.getElementById("youDrew").innerHTML = ("You drew a King. Add 0 to your score.");
+		currentPlayerScore = currentPlayerScore + 0;
+		
+	}
+	else if(fourSidedDice == 5){
+		document.getElementById("youDrew").innerHTML = ("You drew an Ace. Choose 1 or 11.");
+		toggleAceOne("");
+		toggleAceEleven("");
+		currentPlayerTurns++;
 	}
 	currentPlayerTurns--;
-	console.log("Your current score is:" + currentPlayerScore)
-	console.log(currentPlayerTurns)
+	document.getElementById("currentScore").innerHTML = currentPlayerScore;
+	document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+	winCondition();
+	loseCondition();
 }
 
 function winCondition(){
 	if(currentPlayerScore == 99){
-		console.log("You WIN!");
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+		alert("You won!");
 		let endquestion = prompt("Do you want to play again? Type Yes to restart, type No to quit.");
 		if(endquestion == "Yes"){
 			runGame();
+		}
+		else{
+
 		}
 	}	
 }
 
 function loseCondition(){
 	if(currentPlayerTurns <= 0  || currentPlayerScore > 99){
-		console.log("You lose.");
+		document.getElementById("currentScore").innerHTML = currentPlayerScore;
+		document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+		alert("You lost")
 		let endquestion = prompt("Do you want to play again? Type Yes to restart, type No to quit.");
 		if(endquestion == "Yes");
 			runGame();
 		}
+		else{
+		}
+}
+
+function toggleAceOne(showAction){
+	if (showAction === "hide"){
+		document.getElementById("aceOne").style.display = "none";
+	}else{
+		document.getElementById("aceOne").style.display = "";
 	}
+}
+
+	function toggleAceEleven(showAction){
+		if (showAction === "hide"){
+			document.getElementById("aceEleven").style.display = "none";
+		}else{
+			document.getElementById("aceEleven").style.display = "";
+		}
+	}
+
+function aceIsOne(){
+	let ace = 1;	
+	currentPlayerScore = currentPlayerScore + 1;
+	currentPlayerTurns--;
+	document.getElementById("currentScore").innerHTML = currentPlayerScore;
+	document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+	winCondition();
+	loseCondition();
+	toggleAceOne("hide");
+	toggleAceEleven("hide");
+}
+
+function aceIsEleven(){
+	let ace = 11;
+	currentPlayerScore = currentPlayerScore + 11;
+	currentPlayerTurns--;
+	document.getElementById("currentScore").innerHTML = currentPlayerScore;
+	document.getElementById("currentTurn").innerHTML = currentPlayerTurns;
+	winCondition();
+	loseCondition();
+	toggleAceOne("hide");
+	toggleAceEleven("hide");	
+}
